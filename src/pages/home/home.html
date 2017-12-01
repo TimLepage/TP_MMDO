@@ -13,9 +13,11 @@
 
 <ion-content>
   <ion-list>
-    <button ion-item *ngFor="let item of searchres">
+    <button ion-item (click)="push(item)"
+     *ngFor="let item of searchres">
       {{ item.title }}
-    </button><ion-item>
+    </button>
+    <ion-item>
       <div *ngIf="show_no_result">Aucun resultat</div>
     </ion-item>
   </ion-list>

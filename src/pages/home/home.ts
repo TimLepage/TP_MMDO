@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import { DetailsPage } from '../details/details';
 
 
-interface ResultatRecherche {
+export interface ResultatRecherche {
   title:string;
   author:string;
   date:number;
@@ -42,5 +43,8 @@ export class HomePage {
     }
   }
 
+  push(item: ResultatRecherche): void{
+    this.navCtrl.push(DetailsPage, {item});
+  }
 
 }
