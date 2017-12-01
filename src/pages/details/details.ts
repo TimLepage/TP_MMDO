@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 /**
  * Generated class for the DetailsPage page.
@@ -8,6 +8,7 @@ import { NavController, NavParams } from 'ionic-angular';
  * Ionic pages and navigation.
  */
 
+@IonicPage()
 @Component({
   selector: 'page-details',
   templateUrl: 'details.html',

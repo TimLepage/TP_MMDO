@@ -22,10 +22,25 @@ const RESULTAB : ResultatRecherche[]=[{
   templateUrl: 'home.html'
 })
 
-export class HomePage {
-  resultat = RESULTAB;
-  constructor(public navCtrl: NavController) {
 
+export class HomePage {
+  searchres: Array<ResultatRecherche> = [];
+  query : string = '';
+  show_no_result : boolean = true;
+  constructor(public navCtrl: NavController) {
   }
+
+  onInput(): void {
+    console.log(this.query);
+    if (this.query == '') {
+      this.searchres = [];
+      this.show_no_result = true;
+    }
+    else {
+      this.show_no_result = false;
+      this.searchres = RESULTAB;
+    }
+  }
+
 
 }

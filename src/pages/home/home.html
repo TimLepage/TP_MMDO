@@ -1,21 +1,22 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Ionic Blank
+      TP 1 MMDO
     </ion-title>
 
     <ion-toolbar no-border-top>
-      <ion-searchbar placeholder="Filter Items" (ionInput)="filterItems($event)"></ion-searchbar>
+      <ion-searchbar [(ngModel)] = "query" (ionInput)="onInput($event)"></ion-searchbar>
     </ion-toolbar>
-
   </ion-navbar>
 </ion-header>
 
 
 <ion-content>
   <ion-list>
-    <button ion-item *ngFor="let item of resultat">
+    <button ion-item *ngFor="let item of searchres">
       {{ item.title }}
-    </button>
+    </button><ion-item>
+      <div *ngIf="show_no_result">Aucun resultat</div>
+    </ion-item>
   </ion-list>
 </ion-content>
