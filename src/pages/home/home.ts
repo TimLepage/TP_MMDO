@@ -1,22 +1,21 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { DetailsPage } from '../details/details';
+import { Observable } from 'rxjs/Observable';
+import { HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
+
 
 
 export interface ResultatRecherche {
   title:string;
-  author:string;
-  date:number;
-  image:string;
+  overview:string;
+  release_date:number;
+  poster_path:string;
 }
-const RESULTAB : ResultatRecherche[]=[{
-  title: "titre1", author: "author1", date: 2017, image: 'img src ="https://www.saint-mary.church/wp-content/uploads/2016/09/lorem-ipsum-logo.jpg"'},
-  {
-    title: "titre2", author: "author2", date: 2018, image: 'img src ="https://www.saint-mary.church/wp-content/uploads/2016/09/lorem-ipsum-logo.jpg"'
-  },
-  {
-    title: "titre3", author: "author3", date: 2019, image: 'img src ="https://www.saint-mary.church/wp-content/uploads/2016/09/lorem-ipsum-logo.jpg"'
-  }];
+
+const key: string = 'ebb02613ce5a2ae58fde00f4db95a9c1';
+
 
 @Component({
   selector: 'page-home',
@@ -24,22 +23,25 @@ const RESULTAB : ResultatRecherche[]=[{
 })
 
 
+
 export class HomePage {
-  searchres: Array<ResultatRecherche> = [];
+  searchres: Observable<ResultatRecherche[]>=null;
   query : string = '';
   show_no_result : boolean = true;
-  constructor(public navCtrl: NavController) {
-  }
+  //constructor(public navCtrl: NavController) {
+  //  }
+
+  constructor(public navCtrl: NavController, private http: HttpClient) { }
 
   onInput(): void {
     console.log(this.query);
     if (this.query == '') {
-      this.searchres = [];
+      this.searchres = null;
       this.show_no_result = true;
     }
     else {
       this.show_no_result = false;
-      this.searchres = RESULTAB;
+      this.searchres = this.fetchResults();
     }
   }
 
@@ -47,4 +49,9 @@ export class HomePage {
     this.navCtrl.push(DetailsPage, {item});
   }
 
+  fetchResults(): Observable<ResultatRecherche[]> {
+    return this.http.get<ResultatRecherche[]>("https://api.themoviedb.org/3/search/movie", {
+      params: new HttpParams().set('api_key', key).set('query', this.query)
+    }).pluck("results");
+  }
 }

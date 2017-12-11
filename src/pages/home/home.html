@@ -14,7 +14,7 @@
 <ion-content>
   <ion-list>
     <button ion-item (click)="push(item)"
-     *ngFor="let item of searchres">
+     *ngFor="let item of searchres | async">
       {{ item.title }}
     </button>
     <ion-item>
