@@ -1,7 +1,7 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      TP 1 MMDO
+      Movie Finder
     </ion-title>
 
     <ion-toolbar no-border-top>
@@ -20,5 +20,8 @@
     <ion-item>
       <div *ngIf="show_no_result">No results</div>
     </ion-item>
+    <ion-card>
+      <button ion-button color="primary" block (click)="test()">Random Movie</button>
+    </ion-card>
   </ion-list>
 </ion-content>

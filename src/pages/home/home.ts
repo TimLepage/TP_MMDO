@@ -61,15 +61,17 @@ export class HomePage {
   }
 
   discoverMovies(): Observable<ResultatRecherche[]>{
-    return this.http.get<ResultatRecherche[]>("https://developers.themoviedb.org/3/discover/movie-discover", {
+    return this.http.get<ResultatRecherche[]>("https://api.themoviedb.org/3/discover/movie", {
       params: new HttpParams().set('api_key', key).set('primary_release_year', "2018")
     }).pluck("results");
   }
 
-
+  test(): void{
+    this.discoverMovies().subscribe(movies=>this.showRandomMovieAlert(movies));
+  }
 
   showRandomMovieAlert(movies: ResultatRecherche[]): void{
-    var item = movies[Math.floor(Math.random() * movies.length)];
+    var item : ResultatRecherche = movies[Math.floor(Math.random() * movies.length)];
     let confirm = this.alertCtrl.create({
       title: item.title,
       message: item.overview,
