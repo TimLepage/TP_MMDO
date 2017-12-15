@@ -13,7 +13,7 @@
       <b>Title</b>
     </ion-card-header>
     <ion-card-content>
-      {{movie.title}}
+      <b>{{movie.title}}</b>
     </ion-card-content>
   </ion-card>
   <ion-card>
@@ -37,8 +37,5 @@
       <b>Poster</b>
     </ion-card-header>
     <img [src]="'https://image.tmdb.org/t/p/w500/' + movie.poster_path">
-  </ion-card>
-  <ion-card *ngIf="movie.poster_path !== null">
-    <img [src]="'https://image.tmdb.org/t/p/original/' + movie.poster_path">
   </ion-card>
 </ion-content>
